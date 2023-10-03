@@ -3,6 +3,8 @@
 }
 h1 {
   font-size: 5rem;
+  margin: 0 20%;
+  text-decoration: underline;
 }
 
 body {
@@ -14,12 +16,15 @@ body {
   grid-column-end: 3;
 }
 
+main {
+  padding: 100px auto;
+}
+
 #section {
   display: flex;
   justify-content: space-evenly;
-  outline: 1px;
-  margin: 10% 0;
-  align-items: flex-start;
+  margin: 50px auto;
+  align-items: center;
   grid-row-start: 2;
   grid-row-end: 4;
   grid-column-start: 1;
@@ -27,7 +32,7 @@ body {
 }
 
 img {
-  max-height: 400px;
+  height: 400px;
   max-width: 400px;
 }
 
@@ -38,4 +43,13 @@ img {
 
 #section img:hover {
   border: 5px solid cyan;
+}
+
+div {
+  display: flex;
+  justify-content: flex-start;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 2;
 }
