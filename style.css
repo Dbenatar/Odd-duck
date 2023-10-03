@@ -45,7 +45,7 @@ img {
   border: 5px solid cyan;
 }
 
-div {
+div .results {
   display: flex;
   justify-content: flex-start;
   grid-row-start: 2;
