@@ -1,7 +1,11 @@
+const ctx = document.getElementById("myChart");
+const productNames = [];
+const productClicks = [];
+const productViews = [];
 let userClicks = 0;
 let maxClicks = 25;
 
-let productContainer = document.querySelector("section");
+const productContainer = document.querySelector("section");
 const image1 = document.getElementById("image1");
 const image2 = document.getElementById("image2");
 const image3 = document.getElementById("image3");
@@ -102,44 +106,28 @@ function showResults() {
     const products = allProducts[i];
     li.textContent = `${products.name} was viewed ${products.views} times, and clicked ${products.clicks} times`;
     results.appendChild(li);
+    productNames.push(products.name);
+    productViews.push(products.views);
+    productClicks.push(products.clicks);
   }
+  new Chart(ctx, config);
 }
 productContainer.addEventListener("click", handleProductClick);
 
 const viewResults = document.getElementById("view-results");
 viewResults.addEventListener("click", showResults);
-
-const ctx = document.getElementById("myChart");
-const config = new Chart(ctx, {
+const config = {
   type: "bar",
   data: {
-    labels: [
-      "bag",
-      "banana",
-      "bathroom",
-      "boots",
-      "breakfast",
-      "bubblegum",
-      "chair",
-      "cthulu",
-      "dog-duck",
-      "dragon",
-      "pen",
-      "pet-sweep",
-      "scissors",
-      "shark",
-      "sweep",
-      "tauntaun",
-      "unicorn",
-      "water-can",
-      "wine-glass",
-    ],
+    labels: productNames,
     datasets: [
       {
         label: "# of votes",
-        data: [5, 10, 3, 9, 8.9],
+        // for loop
+        data: productClicks,
         borderWidth: 6,
         backgroundColor: [
+          "",
           "",
           "",
           "",
@@ -163,7 +151,7 @@ const config = new Chart(ctx, {
       {
         type: "line",
         label: "# of views",
-        data: [30, 31, 11, 50, 90],
+        data: productViews,
         borderWidth: 6,
         backgroundColor: [
           "red",
@@ -188,6 +176,5 @@ const config = new Chart(ctx, {
       },
     ],
   },
-});
-
+};
 renderProducts();
