@@ -1,13 +1,16 @@
-let productContainer = document.querySelector("section");
-let image1 = document.querySelector("section img:first-child");
-let image2 = document.querySelector("section img:nth-child(2)");
-let image3 = document.querySelector("section img:nth-child(3)");
+let userClicks = 0;
+let maxClicks = 25;
 
-function Products(name, src) {
+let productContainer = document.querySelector("section");
+const image1 = document.getElementById("image1");
+const image2 = document.getElementById("image2");
+const image3 = document.getElementById("image3");
+
+function Products(name) {
   this.name = name;
-  this.src = src;
-  this.views = views;
-  this.clicks = clicks;
+  this.src = `./assets/${name}.jpg`;
+  this.views = 0;
+  this.clicks = 0;
 }
 
 function getRandomIndex() {
@@ -19,8 +22,13 @@ function renderProducts() {
   let product2Index = getRandomIndex();
   let product3Index = getRandomIndex();
 
-  while (product1Index === product2Index || product3Index) {
-    product1Index = getRandomIndex();
+  while (
+    product1Index === product2Index ||
+    product1Index === product3Index ||
+    product2Index === product3Index
+  ) {
+    product2Index = getRandomIndex();
+    product3Index = getRandomIndex();
   }
 
   image1.src = allProducts[product1Index].src;
@@ -36,13 +44,20 @@ function renderProducts() {
 }
 
 function handleProductClick(event) {
+  if (userClicks === maxClicks) {
+    alert("You have run out of votes");
+    return;
+  }
+
+  userClicks++;
+
   let clickedProduct = event.target.alt;
 
-  if (event.target === productContainer) {
-    alert("Please choose an image");
-  } else {
-    renderProducts();
-  }
+  // if (event.target === productContainer) {
+  //   alert("Please choose an image");
+  // } else {
+  //   renderProducts();
+  // }
 
   for (let i = 0; i < allProducts.length; i++) {
     if (clickedProduct === allProducts[i].name) {
@@ -50,29 +65,49 @@ function handleProductClick(event) {
       break;
     }
   }
+  renderProducts();
 }
+
+image1.addEventListener("Click", handleProductClick);
+image2.addEventListener("Click", handleProductClick);
+image3.addEventListener("Click", handleProductClick);
+
 const allProducts = [
-  new Products("bag", "./assets/bag.jpg"),
-  new Products("banana", "./assets/banana.jpg"),
-  new Products("bathroom", "./assets/bathroom.jpg"),
-  new Products("boots", "./assets/boots.jpg"),
-  new Products("breakfast", "./assets/breakfast.jpg"),
-  new Products("bubblegum", "./assets/bubblegum.jpg"),
-  new Products("chair", "./assets/chair.jpg"),
-  new Products("cthulu", "./assets/cthulu.jpg"),
-  new Products("dog-duck", "./assets/dog-duck.jpg"),
-  new Products("dragon", "./assets/dragon.jpg"),
-  new Products("pen", "./assets/pen.jpg"),
-  new Products("pet-sweep", "./assets/pet-sweep.jpg"),
-  new Products("scissors", "./assets/scissors.jpg"),
-  new Products("shark", "./assets/shark.jpg"),
-  new Products("sweep", "./assets/sweep.png"),
-  new Products("tauntaun", "./assets/tauntaun.jpg"),
-  new Products("unicorn", "./assets/unicorn.jpg"),
-  new Products("water-can", "./assets/water-can.jpg"),
-  new Products("wine-glass", "./assets/wine-glass.jpg"),
+  new Products("bag"),
+  new Products("banana"),
+  new Products("bathroom"),
+  new Products("boots"),
+  new Products("breakfast"),
+  new Products("bubblegum"),
+  new Products("chair"),
+  new Products("cthulu"),
+  new Products("dog-duck"),
+  new Products("dragon"),
+  new Products("pen"),
+  new Products("pet-sweep"),
+  new Products("scissors"),
+  new Products("shark"),
+  new Products("sweep"),
+  new Products("tauntaun"),
+  new Products("unicorn"),
+  new Products("water-can"),
+  new Products("wine-glass"),
 ];
 
+function showResults() {
+  const results = document.getElementById("results");
+
+  for (let i = 0; i < allProducts.length; i++) {
+    const li = document.createElement("li");
+    const views = products[i].views;
+    const clicks = products[i].clicks;
+    li.textContent = `Viewed ${views} times | Clicked ${clicks} times`;
+    results.appendChild(li);
+  }
+}
 productContainer.addEventListener("click", handleProductClick);
+
+const viewResults = document.getElementById("results");
+viewResults.addEventListener("Click", results);
 
 renderProducts();

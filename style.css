@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+h1 {
+  font-size: 5rem;
+}
+
+body {
+  background-color: whitesmoke;
+  margin: 3rem 0 1rem;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+#section {
+  display: flex;
+  justify-content: space-evenly;
+  outline: 1px;
+  margin: 10% 0;
+  align-items: flex-start;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+img {
+  max-height: 400px;
+  max-width: 400px;
+}
+
+#section img {
+  width: 30%;
+  border: 5px solid transparent;
+}
+
+#section img:hover {
+  border: 5px solid cyan;
+}
