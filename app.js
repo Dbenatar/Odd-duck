@@ -13,6 +13,28 @@ function Products(name) {
   this.clicks = 0;
 }
 
+const allProducts = [
+  new Products("bag"),
+  new Products("banana"),
+  new Products("bathroom"),
+  new Products("boots"),
+  new Products("breakfast"),
+  new Products("bubblegum"),
+  new Products("chair"),
+  new Products("cthulu"),
+  new Products("dog-duck"),
+  new Products("dragon"),
+  new Products("pen"),
+  new Products("pet-sweep"),
+  new Products("scissors"),
+  new Products("shark"),
+  new Products("sweep"),
+  new Products("tauntaun"),
+  new Products("unicorn"),
+  new Products("water-can"),
+  new Products("wine-glass"),
+];
+
 function getRandomIndex() {
   return Math.floor(Math.random() * allProducts.length);
 }
@@ -72,42 +94,19 @@ image1.addEventListener("Click", handleProductClick);
 image2.addEventListener("Click", handleProductClick);
 image3.addEventListener("Click", handleProductClick);
 
-const allProducts = [
-  new Products("bag"),
-  new Products("banana"),
-  new Products("bathroom"),
-  new Products("boots"),
-  new Products("breakfast"),
-  new Products("bubblegum"),
-  new Products("chair"),
-  new Products("cthulu"),
-  new Products("dog-duck"),
-  new Products("dragon"),
-  new Products("pen"),
-  new Products("pet-sweep"),
-  new Products("scissors"),
-  new Products("shark"),
-  new Products("sweep"),
-  new Products("tauntaun"),
-  new Products("unicorn"),
-  new Products("water-can"),
-  new Products("wine-glass"),
-];
-
 function showResults() {
   const results = document.getElementById("results");
 
   for (let i = 0; i < allProducts.length; i++) {
     const li = document.createElement("li");
-    const views = products[i].views;
-    const clicks = products[i].clicks;
-    li.textContent = `Viewed ${views} times | Clicked ${clicks} times`;
+    const products = allProducts[i];
+    li.textContent = `${products.name} was viewed ${products.views} times, and clicked ${products.clicks} times`;
     results.appendChild(li);
   }
 }
 productContainer.addEventListener("click", handleProductClick);
 
-const viewResults = document.getElementById("results");
-viewResults.addEventListener("Click", results);
+const viewResults = document.getElementById("view-results");
+viewResults.addEventListener("click", showResults);
 
 renderProducts();
