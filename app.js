@@ -107,43 +107,6 @@ image1.addEventListener("Click", handleProductClick);
 image2.addEventListener("Click", handleProductClick);
 image3.addEventListener("Click", handleProductClick);
 
-function renderChart() {
-  const ctx = document.getElementById("myChart");
-
-  const labels = [];
-  const views = [];
-  const clicks = [];
-
-  for (let i = 0; i < allProducts.length; i++) {
-    labels.push(allProducts[i].name);
-    views.push(allProducts[i].views);
-    clicks.push(allProducts[i].clicks);
-  }
-  const config = {
-    type: "bar",
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: "# of votes",
-          // for loop
-          data: clicks,
-          borderWidth: 3,
-          backgroundColor: ["skyblue"],
-        },
-        {
-          type: "bar",
-          label: "# of views",
-          data: views,
-          borderWidth: 3,
-          backgroundColor: ["red"],
-        },
-      ],
-    },
-  };
-  new Chart(ctx, config);
-}
-
 productContainer.addEventListener("click", handleProductClick);
 
 renderProducts();
