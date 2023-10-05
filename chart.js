@@ -58,14 +58,14 @@ function renderChart() {
           // for loop
           data: clicks,
           borderWidth: 3,
-          backgroundColor: ["skyblue"],
+          backgroundColor: ["cyan"],
         },
         {
           type: "bar",
           label: "# of views",
           data: views,
           borderWidth: 3,
-          backgroundColor: ["red"],
+          backgroundColor: ["magenta"],
         },
       ],
     },
